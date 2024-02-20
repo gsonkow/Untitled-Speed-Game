@@ -1,0 +1,54 @@
+
+
+Evaluation and Feedback
+CMSI 4072 project ~ Spring 2024
+Gabe Sonkowsky
+Untitled-Speed-Game project
+==============================
+
+Software Requirements Specification Document:
+---------------------------------------------
+-- Introduction Section
+   Nice work on the introduction section.  The diagram is a good idea to aid
+   in explanation of the parts and how they associate.  Nothing else needed
+   in this section.
+
+-- Functional Requirements
+   This section needs some attention.  For one thing, this is not in either
+   of the accepted formats for either waterfall or agile specifications.  It
+   needs to be either numbered requirements using the "dot" notation for the
+   waterfall style, like:
+
+   5.2.1.2  The Level Selector shall display all currently available levels
+            to the player
+
+   or the agile use case specifier style, like:
+
+   9. AS A game player I WANT the Level Selector to display records for the
+      levels displayed SO THAT I can select the level at which I want to play.
+
+   You will also need quite a few more requirements, regardless of which way
+   they are specified.  An application of this sophistication would have a
+   great deal more requirements or user stories.  If using the user story
+   method, you'll probably have a few stories that are large, and those will
+   need to be broken down into "child stories" so that they are small enough
+   to be coded.  For each child story, you will also need several acceptance
+   criteria so that you have some way to prove that the story is working.
+
+-- Performance Requirements
+   I guess this is enough for this game, although since it is all about the
+   speed of the movements, I would think you need at least one or two more
+   requirements to specify maximum delay time or some sort of specification
+   for the latency of the movements.
+
+-- Environment Requirements
+   Good job on the environment section.  Nothing else for me to add, and
+   nothing else needed for this section.
+
+=============================================================================
+your score:  8% out of 10% which is a B.
+
+All in all, not a bad first effort, you just need to fill in more specifics.
+
+Make the changes as suggested above for the second submission, including many
+more requirements, and you'll get the full 10% on this document.

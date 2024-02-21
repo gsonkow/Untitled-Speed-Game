@@ -1,0 +1,42 @@
+
+Evaluation and Feedback
+CMSI 4072 project ~ Spring 2024
+Gabe Sonkowsky
+Untitled-Speed-Game project
+Evaluation for homework02
+===============================
+
+5-1 component-based vs service-oriented             5 of  5 points
+5-2 most appropriate architecture for tictactoe     5 of  5 points
+5-4 internet chess appropriate architecture         5 of  5 points
+5-6 database for ClassyDraw                         5 of  5 points
+5-8 state machine diagram for floats                5 of 10 points
+6-1 compare/contrast ClassyDraw subclasses         10 of 10 points
+6-2 inheritance diagram from 6-1                   10 of 10 points
+
+
+Total possible score: 50 points
+
+EVALUATION
+============================================================================
+Your score: 45 out of 50 = 100.0% which is an A-plus
+
+Comments:
+---------
+Nice work on this assignment.
+
+On 5.6, perhaps a full-on column oriented database is a bit of overkill for
+a fairly simple application like a drawing program.  However, you have made
+a good case for the database idea.  I'd be interested in seeing how you'd
+set the database up!  How would it be organized?  Would each row be a single
+drawing or would the rows be shapes that are linked together into drawings?
+
+On 5.8, your drawing is not a state machine; rather it's more of a data flow
+diagram.  The problem was asking for you to provide a state machine, which
+has states for things like 'digit entered', "E/e entered", "decimal entered",
+and so on.  The edges between the states represent the inputs that move the
+state of the system along towards the "accept" state.  Think about what you
+did in your Theory of Computation class with DFA's.
+
+Good job ~ keep up the good work!!
+

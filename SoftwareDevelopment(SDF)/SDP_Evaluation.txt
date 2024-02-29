@@ -1,0 +1,35 @@
+
+
+Evaluation and Feedback
+CMSI 4072 project ~ Spring 2024
+Gabe Sonkowsky
+Untitled-Speed-Game project
+=============================================
+
+Software Development Plan Document:
+---------------------------------------------
+-- General Comments
+   This is very nice work, Gabe!
+
+-- Introduction Section
+   Great job on this section; no comments, nothing additional needed.
+
+-- Project Resources Section
+   How much would the Unity Asset store cost you?  That should be added in,
+   or at least an estimated cost.
+
+-- Project Organization Section
+   Good explanation of the interrelatedness of the segments.  Nice!
+   Great job on this section; no comments, nothing additional needed.
+
+-- Project Schedule Section
+   Very nice Gantt chart here ~ clear and clean with priorities as well.
+   Great job on this section; no comments, nothing additional needed.
+
+=============================================================================
+your score:  10% out of 10% which is an A-plus
+
+Full credit on this draft, but be sure to add in the Unity Asset estimation
+for full credit on the second submission.
+
+Good job, and keep it up!

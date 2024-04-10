@@ -5,8 +5,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
-    private float moveSpeed = 10;
+    private float moveSpeed;
     public float runSpeed;
+    public float slideSpeed;
+
+    private float desiredMoveSpeed;
+    private float lastDesiredMoveSpeed;
 
     public float groundDrag;
 
@@ -51,14 +55,18 @@ public class PlayerController : MonoBehaviour
     {
         running,
         crouching,
+        sliding,
         air
     }
 
+    public bool sliding;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        moveSpeed = runSpeed;
 
         startYScale = transform.localScale.y;
     }
@@ -115,20 +123,62 @@ public class PlayerController : MonoBehaviour
 
     public void StateHandler()
     {
-        if (Input.GetKey(crouchKey))
+        if (sliding)
+        {
+            state = MovementState.sliding;
+
+            if(OnSlope() && rb.velocity.y < 0.1f)
+            {
+                desiredMoveSpeed = slideSpeed;
+            }
+            else
+            {
+                desiredMoveSpeed = runSpeed;
+            }
+        }
+
+        else if (Input.GetKey(crouchKey))
         {
             state = MovementState.crouching;
-            moveSpeed = crouchSpeed;
+            desiredMoveSpeed = crouchSpeed;
         }
         else if (grounded)
         {
             state = MovementState.running;
-            moveSpeed = runSpeed;
+            desiredMoveSpeed = runSpeed;
         }
         else
         {
             state = MovementState.air;
         }
+
+        if(Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && moveSpeed != 0)
+        {
+            StopAllCoroutines();
+            StartCoroutine(SmoothlyLerpMoveSpeed());
+        }
+        else
+        {
+            moveSpeed = desiredMoveSpeed;
+        }
+
+        lastDesiredMoveSpeed = desiredMoveSpeed;
+    }
+
+    private IEnumerator SmoothlyLerpMoveSpeed()
+    {
+        float time = 0;
+        float difference = Mathf.Abs(desiredMoveSpeed - moveSpeed);
+        float startValue = moveSpeed;
+
+        while (time < difference)
+        {
+            moveSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, time / difference);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        moveSpeed = desiredMoveSpeed;
     }
 
     private void MovePlayer()
@@ -137,7 +187,7 @@ public class PlayerController : MonoBehaviour
 
         if (OnSlope() && !exitingSlope)
         {
-            rb.AddForce(getSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+            rb.AddForce(getSlopeMoveDirection(moveDirection) * moveSpeed * 20f, ForceMode.Force);
 
             if(rb.velocity.y > 0)
             {
@@ -207,7 +257,7 @@ public class PlayerController : MonoBehaviour
         exitingSlope = false;
     }
 
-    private bool OnSlope()
+    public bool OnSlope()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
         {
@@ -218,9 +268,9 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    private Vector3 getSlopeMoveDirection()
+    public Vector3 getSlopeMoveDirection(Vector3 direction)
     {
-        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+        return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
     }
 
 }

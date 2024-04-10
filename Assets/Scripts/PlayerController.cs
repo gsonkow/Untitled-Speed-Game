@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed;
     public float runSpeed;
     public float slideSpeed;
+    public float wallrunSpeed;
 
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
@@ -54,12 +55,14 @@ public class PlayerController : MonoBehaviour
     public enum MovementState
     {
         running,
+        wallrunning,
         crouching,
         sliding,
         air
     }
 
     public bool sliding;
+    public bool wallrunning;
 
     private void Start()
     {
@@ -78,6 +81,8 @@ public class PlayerController : MonoBehaviour
         MyInput();
 
         SpeedControl();
+
+        StateHandler();
 
         if (grounded)
         {
@@ -123,7 +128,12 @@ public class PlayerController : MonoBehaviour
 
     public void StateHandler()
     {
-        if (sliding)
+        if(wallrunning)
+        {
+            state = MovementState.wallrunning;
+            desiredMoveSpeed = wallrunSpeed;
+        }
+        else if (sliding)
         {
             state = MovementState.sliding;
 

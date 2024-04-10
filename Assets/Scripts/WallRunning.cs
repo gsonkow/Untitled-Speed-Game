@@ -31,6 +31,81 @@ public class WallRunning : MonoBehaviour
 
     private void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
+        pc = GetComponent<PlayerController>();
     }
+
+    private void Update()
+    {
+        CheckForWall();
+        StateMachine();
+    }
+
+    private void FixedUpdate()
+    {
+        if (pc.wallrunning) {
+            WallRunningMovement();
+        }
+    }
+
+    private void CheckForWall()
+    {
+        wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallHit, wallCheckDistance, whatIsWall);
+        wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallhit, wallCheckDistance, whatIsWall);
+    }
+
+    private bool AboveGround()
+    {
+        return !Physics.Raycast(transform.position, Vector3.down, minJumpHeight, whatIsGround);
+    }
+
+    private void StateMachine()
+    {
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
+
+        if((wallLeft || wallRight) && verticalInput > 0 && AboveGround())
+        {
+            if (!pc.wallrunning)
+            {
+                StartWallRun();
+            }
+        }
+
+        else
+        {
+            if (pc.wallrunning)
+            {
+                StopWallRun();
+            }
+        }
+    }
+
+    private void StartWallRun()
+    {
+        pc.wallrunning = true;
+    }
+
+    private void WallRunningMovement()
+    {
+        rb.useGravity = false;
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallhit.normal;
+
+        Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
+
+        if ((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
+        {
+            wallForward = -wallForward;
+        }
+
+        rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
+    }
+
+    private void StopWallRun()
+    {
+        pc.wallrunning = false;
+    }
+    
 }

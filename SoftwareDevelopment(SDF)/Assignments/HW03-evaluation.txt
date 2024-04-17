@@ -1,0 +1,53 @@
+
+Evaluation and Feedback
+CMSI 4072 project ~ Spring 2024
+Gabe Sonkowsky
+Untitled-Speed-Game project
+Evaluation for homework02
+===============================
+
+7-1  Fix comments for Euclid's Algorithm        5 out of 5 points
+7-2  Two conditions for bad comments            4 out of 4 points
+7-4  Apply offensive programming ex.3           4 out of 5 points
+7-5  Should you add error handling?             4 out of 4 points
+7-7  Top-down drive to market / assumptions     5 out of 5 points
+8-1  Implementation of IsRelativelyPrime        5 out of 5 points
+8-3  Which testing methods used in 8-1 [gimme]  5 out of 5 points
+8-5  Implementation of AreRelativelyPrime       4 out of 4 points
+8-9  Exhaustive is black/white/gray & why       4 out of 4 points
+8-11 Lincoln estimate / number bugs             3 out of 5 points
+8-12 Lincoln estimate no common bugs            4 out of 4 points
+
+Total possible score: 50 points
+============================================================================
+
+Your score: 47 out of 50 = 94% which is an A
+
+Comments/feedback:
+
+Your answers are very short.  There is a time to be parsimonious, but don't
+   be afraid to spend a few more words of explanation.  By the same token,
+   you should be a bit more comprehensive with your testing philosophy.  If
+   you only test what you know works, you'll miss edge cases and out of
+   bounds cases which might break your code.
+
+problem 7-4: the code should CHECK for improper input numbers, but it should
+   not really 'fail'; rather it should raise an exception.  THAT's offensive
+   programming.
+
+problem 7-5: where would the code send that exception?  What do you mean 'no
+   GCD'?
+
+problem 7-7: this is VERY sketchy as to the details of how you'd drive to a
+   grocery store.
+
+problem 8-11: the calculation is for two people at a time so for A and B it
+   is (5 * 4) / 2 or 10.  You must repeat that for the other two combinations
+   and then average those results.  Final score, 14 bugs.
+
+
+Pretty good job!!
+
+It has been a great pleasure to have you in my classes over the years, and I
+look forward to hearing from you as you make your marks upon the world and the
+industry.  Keep up the good work!
